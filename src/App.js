@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import ReportPopup from './ReportPopup';
+import SignalBar from './SignalBar';
 
 function App() {
-  const [isReportPopupVisible, setReportPopupVisible] = useState(false);  
+  const [isReportPopupVisible, setReportPopupVisible] = useState(false);
+  const [isSignalContainerVisible, setSignalContainerVisible] = useState(true);
   const [ws, setWs] = useState(null);
-  const [response, setResponse] = useState({"location":{"x":0, "y":0,"z":0},"datetime":0,"velocity":0,"measurements":0});
+  const [response, setResponse] = useState({ "location": { "x": 0, "y": 0, "z": 0 }, "datetime": 0, "velocity": 0, "measurements": { "0": 0 } });
 
   useEffect(() => {
     const socket = new WebSocket("ws://localhost:8765");
@@ -30,14 +32,15 @@ function App() {
     setWs(socket);
 
     return () => {
-      if(socket.readyState ===1){
-      socket.close();
+      if (socket.readyState === 1) {
+        socket.close();
       }
     };
   }, []);
 
   return (
     <div className="App" class="m-0 p-0 w-full h-full overflow-hidden flex justify-center items-center bg-black text-center">
+
       <div id="left-panel" class="absolute top-2.5 left-2.5 gap-2.5 w-[200px] border-r border-[#ccc] flex flex-col">
         <div class="w-[200px] opacity-50 bg-[rgba(0,0,0,0.5)] text-white border-0 p-2.5 transition-opacity duration-300 z-[2] hover:opacity-100">Identyfikator lotu: <span id="flight-number"></span></div>
         <div class="w-[200px] opacity-50 bg-[rgba(0,0,0,0.5)] text-white border-0 p-2.5 transition-opacity duration-300 z-[2] hover:opacity-100">Szerokość: <span id="latitude">{response.location.x.toFixed(6)}</span> N</div>
@@ -56,13 +59,29 @@ function App() {
           Zgłoś</button>
       </div>
 
-      {isReportPopupVisible && (
-        <ReportPopup onClose={() => setReportPopupVisible(false)} />
-      )}
-
       <div id="finish-flight-container" class="absolute bottom-2.5 left-2.5 flex flex-col gap-2.5">
         <button id="finish-flight-button" class="w-[120px] opacity-50 bg-[rgba(0,0,0,0.5)] text-white border-0 p-2.5 cursor-pointer transition-opacity duration-300 hover:opacity-100">Zakończ lot</button>
       </div>
+
+      {isSignalContainerVisible && (
+        <div id="signal-container" class="absolute bottom-10 right-2.5 flex flex-col">
+          {response.measurements && Object.entries(response.measurements).map(([freq, power]) => (
+            <SignalBar key={freq} freq={freq} power={power.toFixed(2)} />
+          ))}
+        </div>
+      )}
+
+      <button
+        id="signal-button"
+        onClick={() => setSignalContainerVisible(prev => !prev)}
+        className="absolute bottom-[5px] right-2.5 h-[35px] w-[120px] flex items-center justify-center opacity-50 bg-[rgba(0,0,0,0.5)] text-white border-0 p-2.5 cursor-pointer transition-opacity duration-300 hover:opacity-100"
+      >
+        {isSignalContainerVisible ? "Ukryj pomiary" : "Pokaż "}
+      </button>
+
+      {isReportPopupVisible && (
+        <ReportPopup onClose={() => setReportPopupVisible(false)} />
+      )}
     </div>
   );
 }
