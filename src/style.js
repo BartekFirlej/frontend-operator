@@ -1,0 +1,2 @@
+export const osdTextXL = "w-[150px] text-white uppercase font-bold text-xl tracking-wide p-2.5 border-0 z-[2] osd-text";
+export const osdTextSM = "w-[150px] text-white uppercase font-bold text-sm tracking-wide p-2.5 border-0 z-[2] osd-text";

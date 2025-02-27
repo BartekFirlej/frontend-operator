@@ -20,7 +20,7 @@ function SignalBar({ freq, power }) {
   const color = getSignalColor(power);
 
   return (
-    <div class="w-[120px] h-[20px] m-[1px] border border-black rounded-[5px] relative text-white overflow-hidden text-xs" data-freq={freq}>
+    <div class="w-[130px] h-[20px] m-[1px] border border-black rounded-[5px] relative text-white overflow-hidden text-xs font-bold tracking-wide" data-freq={freq}>
       <div
         class="h-full w-0 bg-green-500"
         style={{ width: `${width}%`, backgroundColor: color }}
