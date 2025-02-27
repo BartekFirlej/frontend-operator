@@ -1,17 +1,19 @@
-import React from "react";
-import config from "../config";
+import React, { forwardRef } from 'react';
+import config from '../config';
 
-const VideoStream = ({ zoom }) => {
-    return (
-        <div id="video-container" class="relative w-[1920px] h-[1080px] overflow-hidden">
-            <img id="videoStream"
-                style={{ transform: `scale(${zoom})` }}
-                class="w-[1920px] h-[1080px] transform scale-100 origin-center"
-                src={config.VIDEO_FEED_URL}
-                alt="Drone View"
-            />
-        </div>
-    );
-};
+const VideoStream = forwardRef(({ zoom }, ref) => {
+  return (
+    <div id="video-container" className="relative w-[1920px] h-[1080px] overflow-hidden">
+      <img
+        ref={ref}
+        id="videoStream"
+        className="w-[1920px] h-[1080px] transform origin-center"
+        style={{ transform: `scale(${zoom})` }}
+        src={config.VIDEO_FEED_URL}
+        alt="Drone View"
+      />
+    </div>
+  );
+});
 
 export default VideoStream;
