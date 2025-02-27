@@ -45,7 +45,10 @@ function App() {
     videoImg.crossOrigin = "anonymous";
     const canvas = canvasRef.current;
     if (!videoImg || !canvas) return;
-
+    if (videoImg.naturalWidth === 0 || videoImg.naturalHeight === 0) {
+      console.warn("Image not fully loaded yet.");
+      return;
+    }
     const context = canvas.getContext('2d');
     canvas.width = videoImg.naturalWidth;
     canvas.height = videoImg.naturalHeight;
