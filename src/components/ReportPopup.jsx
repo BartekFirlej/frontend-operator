@@ -1,7 +1,7 @@
 // ReportPopup.jsx
 import React from 'react';
 
-function ReportPopup({ onClose }) {
+function ReportPopup({ onClose, x, y }) {
   return (
     <div 
       id="report-popup"
@@ -26,10 +26,10 @@ function ReportPopup({ onClose }) {
         <span id="report-time"></span>
         <br />
         <p>Współrzędna X: </p>
-        <span id="report-x"></span>
+        <span id="report-x">{x}</span>
         <br />
         <p>Współrzędna Y:</p>
-        <span id="report-y"></span>
+        <span id="report-y">{y}</span>
         <br />
         <div id="report-popup-buttons" className="flex gap-2 mt-4">
           <button
