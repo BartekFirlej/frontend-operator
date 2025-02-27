@@ -1,4 +1,3 @@
-// ReportPopup.jsx
 import React from 'react';
 
 function ReportPopup({ onClose, x, y }) {

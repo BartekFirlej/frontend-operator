@@ -1,4 +1,6 @@
 import React from 'react';
+import '../styles/style.css'
+import { osdTextXL } from '../style';
 
 const FreezeFrame = ({ imageUrl, onClose }) => {
   return (
@@ -8,11 +10,11 @@ const FreezeFrame = ({ imageUrl, onClose }) => {
       <img
         className="w-full"
         src={imageUrl}
-        alt="Drone View Freeze Frame"
+        alt="Spróbuj ponownie"
         crossOrigin="anonymous"
       />
       <button
-        className="w-[35%] my-2 mx-1 border-0 py-2.5 px-5 text-white cursor-pointer rounded-[5px] font-bold transition-colors duration-300 bg-red-500 hover:bg-red-600"
+        className={`${osdTextXL} w-[35%] my-2 mx-1 border-0 py-2.5 px-5 text-white cursor-pointer rounded-[5px] transition-colors duration-300 bg-red-500 hover:bg-red-600`}
         onClick={onClose}
       >
         Zamknij
