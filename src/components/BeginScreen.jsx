@@ -5,13 +5,13 @@ import config from '../config';
 const BeginScreen = () => {
   const navigate = useNavigate();
 
-  const [platoon, setPlatoon] = useState('1');
-  const [team, setTeam] = useState('1');
-  const [operator, setOperator] = useState('1');
+  const [platoon, setPlatoon] = useState(1);
+  const [team, setTeam] = useState(1);
+  const [operator, setOperator] = useState(1);
   const [comment, setComment] = useState('');
-  const [startX, setStartX] = useState('51.224466');
-  const [startY, setStartY] = useState('22.334455');
-  const [startZ, setStartZ] = useState('123.12');
+  const [startX, setStartX] = useState(51.224466);
+  const [startY, setStartY] = useState(22.334455);
+  const [startZ, setStartZ] = useState(123.12);
 
   const handleSubmit = async () => {
     const datetime = new Date().toISOString();

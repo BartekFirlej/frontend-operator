@@ -8,6 +8,7 @@ import RightPanel from './components/RightPanel';
 import VideoStream from './components/VideoStream';
 import FreezeFrame from './components/FreezeFrame';
 import FinishFlight from './components/FinishFlight';
+import config from './config';
 
 function App() {
   const location = useLocation();
@@ -63,7 +64,32 @@ function App() {
     setCapturedFreezeFrame('');
   };
 
-  const handleFlightFinish = () => {}
+  const handleFlightFinish = async () => {
+    const payload = {
+      flightID: flightID, 
+      endTime: new Date().toISOString()
+    };
+  
+    try {
+      const response = await fetch(config.FLIGHT_END_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Request failed with status ${response.status}`);
+      }
+  
+      const data = await response.json();
+      console.log("Flight finish response:", data);
+      window.location.href = "/"; 
+    } catch (error) {
+      console.error("Error sending flight finish:", error);
+    }
+  };
 
 
   return (
