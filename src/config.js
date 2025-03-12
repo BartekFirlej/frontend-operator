@@ -1,10 +1,12 @@
 const GATEWAY_LOCALHOST = "http://localhost:5147";
+const BACKEND_OPERATOR = "http://localhost:5000"
 
 const config = {
   GATEWAY_LOCALHOST,
   WS_ENDPOINT: "ws://localhost:8765",
-  VIDEO_FEED_URL: "http://localhost:5000/video_feed",
-  FLIGHT_BEGIN_ENDPOINT: `${GATEWAY_LOCALHOST}/flights`,
+  VIDEO_FEED_URL: `${BACKEND_OPERATOR}/video_feed`,
+  FLIGHT_BEGIN_ENDPOINT: `${BACKEND_OPERATOR}/flights/begin`,
+  FLIGHT_END_ENDPOINT: `${BACKEND_OPERATOR}/flights/end`,
   SIGNAL_ENDPOINT: `${GATEWAY_LOCALHOST}/signals`,
   TARGET_ENDPOINT: `${GATEWAY_LOCALHOST}/targets`
 };
