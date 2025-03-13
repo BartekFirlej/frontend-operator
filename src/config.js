@@ -7,8 +7,8 @@ const config = {
   VIDEO_FEED_URL: `${BACKEND_OPERATOR}/video_feed`,
   FLIGHT_BEGIN_ENDPOINT: `${BACKEND_OPERATOR}/flights/begin`,
   FLIGHT_END_ENDPOINT: `${BACKEND_OPERATOR}/flights/end`,
+  TARGET_ENDPOINT: `${BACKEND_OPERATOR}/targets`,
   SIGNAL_ENDPOINT: `${GATEWAY_LOCALHOST}/signals`,
-  TARGET_ENDPOINT: `${GATEWAY_LOCALHOST}/targets`
 };
 
 export default config;

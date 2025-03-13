@@ -39,7 +39,7 @@ const BeginScreen = () => {
       const resData = await response.json();
       const flightID = resData.flightID;
 
-      navigate(`/app?flightID=${flightID}`);
+      navigate(`/app?flightID=${flightID}&operatorID=${operator}&teamID=${team}&platoonID=${platoon}`);
     } catch (error) {
       console.error("Error creating flight:", error);
     }
